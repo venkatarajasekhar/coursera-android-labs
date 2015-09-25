@@ -34,9 +34,13 @@ public class FeedFragmentData {
 	private void loadFeeds() {
 
 		for (int id : IDS) {
-
+                        try{
 			InputStream inputStream = mContext.getResources().openRawResource(
 					id);
+                        }catch(IOException e){
+                        	Log.i(TAG, "IOException");
+                                }  
+                        }  
 			BufferedReader reader = new BufferedReader(new InputStreamReader(
 					inputStream));
 
@@ -48,9 +52,17 @@ public class FeedFragmentData {
 			try {
 
 				String line = "";
-				while ((line = reader.readLine()) != null) {
-				
+				try{
+				line = reader.readLine();
+				}catch(IOException e){
+                        	Log.i(TAG, "IOException");
+                                }  
+				while(line)  {
+				        try{
 					buffer.append(line);
+				        }catch(Exception e){
+				        	
+				        }
 				}
 			
 			} catch (IOException e) {
@@ -65,8 +77,11 @@ public class FeedFragmentData {
 			} catch (JSONException e) {
 				Log.i(TAG, "JSONException");
 			}
-
+                        try{
 			mFeeds.put(id, procFeed(feed));
+                        }catch(JSONException e){
+                        Log.i(TAG, "JSONException");	
+                        }
 		
 		}
 	}
@@ -94,8 +109,11 @@ public class FeedFragmentData {
 
 				Log.i(TAG, "JSONException while processing feed");
 			}
-
+                        try{
 			textFeed.append(name + " - " + tweet + "\n\n");
+                        }catch(IOException e){
+                        	Log.i(TAG, "IOException");
+                                }  
 		}
 
 		return textFeed.toString();
