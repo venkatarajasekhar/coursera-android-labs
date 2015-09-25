@@ -83,8 +83,11 @@ public class FriendsFragment extends ListFragment {
 	public void onListItemClick(ListView l, View view, int position, long id) {
 
 		// Notify the hosting Activity that a selection has been made.
-
+                try{
 		mCallback.onItemSelected(position);
+                }catch(){
+                	
+                }
 
 	}
 
