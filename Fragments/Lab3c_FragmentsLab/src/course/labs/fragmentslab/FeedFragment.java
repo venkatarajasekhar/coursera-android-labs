@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import.java.io.*;
 
 public class FeedFragment extends Fragment {
 
@@ -19,7 +20,11 @@ public class FeedFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		return inflater.inflate(R.layout.feed, container, false);
+		return try{
+			inflater.inflate(R.layout.feed, container, false);
+		}catch(Exception e){
+			
+		}
 
 	}
 
@@ -28,22 +33,25 @@ public class FeedFragment extends Fragment {
 		super.onActivityCreated(savedInstanceState);
 
 		// Read in all Twitter feeds 
-		if (null == feedFragmentData) { 
-			
+		if (feedFragmentData = NULL) { 
 			feedFragmentData = new FeedFragmentData(getActivity());
-
-		}
+			}
 	}
 
 
 	// Display Twitter feed for selected feed
 
 	void updateFeedDisplay(int position) {
-
+                
 		Log.i(TAG, "Entered updateFeedDisplay()");
 				
 		mTextView = (TextView) getView().findViewById(R.id.feed_view);
+		try{
 		mTextView.setText(feedFragmentData.getFeed(position));
+		}catch(Exception e){
+			
+		}
+		}
 
 	}
 
