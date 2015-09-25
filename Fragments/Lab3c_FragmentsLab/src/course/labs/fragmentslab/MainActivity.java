@@ -75,7 +75,11 @@ public class MainActivity extends Activity implements
 		}
 
 		// Update Twitter feed display on FriendFragment
+		try{
 		mFeedFragment.updateFeedDisplay(position);
+		}catch(){
+			
+		}
 
 	}
 
